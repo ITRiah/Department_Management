@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+        }
+        
+        p{
+			color: red;
+		}
+        
+    </style>
+</head>
+<body>
+    <table>
+        <form th:action="@{/user/new}" method="post" enctype="multipart/form-data" th:object="${userDTO}">
+            <tr>
+                <th >Name:</th>
+                <td>
+					<input th:field="*{name}" type="text" >
+					<p th:errors="*{name}"></p>
+                </td>
+                
+            </tr>
+            <tr>
+                <th>Age:</th>
+                <td>
+					<input th:field="*{age}" type="text">
+					<p th:errors="*{age}"></p>
+				</td>
+            </tr>
+            <tr>
+                <th>Avatar:</th>
+                <td>
+					<input name="file" type="file" accept="image/*">
+				</td>
+            </tr>
+            <tr>
+                <th>User Name:</th>
+                <td>
+					<input name="username" type="text" >
+				</td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td>
+					<input name="password" type="text">
+				</td>
+            </tr>
+            <tr>
+                <th>Department:</th>
+                <td>
+					<select name="department.id">
+						<option th:each="d : ${departments}" th:value="${d.id}" th:text="${d.name}" />
+					</select>
+				</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+
+</body>
+</html>

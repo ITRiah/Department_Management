@@ -1,0 +1,18 @@
+<html>                                                                                                                                                   
+	<form th:action="@{/department/update}" method="post">                                                                                                  
+		<tr>                                                                                                                                             
+			<td>                                                                                                                                         
+				<th>Name</th>                                                                                                                            
+			</td>
+			<td>    
+				<input type="hidden" name="id" th:value="${departmentDTO.id}">                                                                                                                      
+			</td>                                                                                                                                                                                                                                                           
+			<td>    
+				<input name="name" th:value="${departmentDTO.name}">                                                                                                                      
+			</td>                                                                                                                                        
+			<td>                                                                                                                                         
+				<button>Update</button>                                                                                                                    
+			</td>                                                                                                                                        
+		</tr>                                                                                                                                            
+	</form>                                                                                                                                              
+</html>                                                                                                                                                  

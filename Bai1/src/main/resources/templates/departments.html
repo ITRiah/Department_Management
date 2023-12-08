@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="/Template.html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department</title>
+</head>
+
+<body layout:fragment="content">
+    <div class="container mt-5">
+        <!-- Search Form -->
+        <form th:action="@{/user/search}" th:object="${searchTicketDTO}" class="mb-3">
+            <div class="input-group">
+                <input name="keyword" class="form-control" placeholder="ClientName...">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- New Department Button -->
+        <a th:href="@{/department/new}" class="btn btn-success mb-3">New</a>
+
+        <!-- Department Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>DATE_CREATE</th>
+                    <th>DATE_UPDATE</th>
+                    <th>Function</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="department : ${departmentDTO}">
+                    <td th:text="${department.id}"></td>
+                    <td th:text="${department.name}"></td>
+                    <td th:text="${department.createAt}"></td>
+                    <td th:text="${department.updateAt}"></td>
+                    <td>
+                        <a th:href="@{'/department/delete?id=' + ${department.id}}" class="btn btn-danger">Delete</a>
+                        <a th:href="@{'/department/update?id=' + ${department.id}}" class="btn btn-primary">Update</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

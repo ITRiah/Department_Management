@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <form th:action="@{/user/update}" method="post" enctype="multipart/form-data">
+			<input name="avatarURL" type="hidden" th:value="${user.avatarURL}"/>
+            <tr>
+                <th>ID:</th>
+                <td><input name="id" type="text" th:value="${user.id}"></td>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td><input name="name" type="text" th:value="${user.name}"></td>
+            </tr>
+            <tr>
+                <th>Age:</th>
+                <td><input name="age" type="text" th:value="${user.age}"></td>
+            </tr>
+            <tr>
+                <th>Avatar:</th>
+                <td>
+					<img width="200px" th:src="@{'/download?fileName=' + ${user.avatarURL}}">
+					<input type="file" name="fileName" placeholder="File">
+                </td>
+            </tr>
+             <tr>
+                <th>User Name:</th>
+                <td>
+					<input name="username" th:value="${user.username}" type="text" >
+				</td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td>
+					<input name="password" th:value="${user.password}" type="text">
+				</td>
+            </tr>
+            <tr>
+				<td>Department: </td>
+				<td>
+					<select name="department.id">
+					<option th:each="d : ${departments}" th:value="${d.id}" th:text="${d.name}" th:selected="${user.department?.id} == ${d.id}"/>
+					</select>
+				</td>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+
+</body>
+</html>

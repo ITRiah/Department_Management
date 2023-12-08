@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Form</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 50%;
+			margin: auto;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid black;
+		}
+
+		th,
+		td {
+			padding: 10px;
+			text-align: left;
+		}
+
+		input {
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		#errors {
+			color: red;
+		}
+
+		button {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<form th:action="@{/ticket/new}" method="post">
+		<table>
+			<tr>
+				<th>Client Name:</th>
+				<td>
+					<input name="clientName" type="text">
+				</td>
+			</tr>
+			<tr>
+				<th>Cilent Phone:</th>
+				<td><input name="clientPhone" type="text"></td>
+			</tr>
+			<tr>
+				<th>Status:</th>
+				<td><input name="status" type="text"></td>
+			</tr>
+			<tr>
+				<th>Content:</th>
+				<td><input name="content" type="text"></td>
+			</tr>
+			<tr>
+				<th>Process Date:</th>
+				<td><input name="processDate" type="text"></td>
+			</tr>
+			<tr>
+				<th>Department ID:</th>
+				<td>
+					<select name="department.id">
+						<option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button type="submit">Save</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
