@@ -1,0 +1,16 @@
+<html>
+	<form th:action="@{/category/new}" method="post" th:object="${categoryDTO}">
+		<tr>
+			<td>
+				<th>Name</th>
+			</td>
+			<td>
+				<input name="name">
+				<p th:errors="*{name}"></p>
+			</td>
+			<td>
+				<button>Save</button>
+			</td>
+		</tr>
+	</form>
+</html>
